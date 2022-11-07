@@ -15,7 +15,7 @@ pip==21.1.2
 psycopg2-binary==2.9.5
 python-form==0.2.3
 setuptools==57.0.0
-itsdangerous==2.1.2
+
 Jinja2==3.1.2
 MarkupSafe==2.1.1
 

@@ -11,7 +11,7 @@ from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from flask_gravatar import Gravatar
 from functools import wraps
 import os
-
+import re
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('S_Key')
 # app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
@@ -23,7 +23,7 @@ Bootstrap(app)
 # uri = os.environ.get("DATABASE_URL", "sqlite:///blog.db")
 uri = os.environ.get("DATABASE_URL")
 if uri and uri.startswith("postgres://"):
-    uri = uri.replace("postgres://", "postgresql://", 1)
+    uri = uri.replace("postgres://", "postgresql+psycopg2://", 1)
 app.config['SQLALCHEMY_DATABASE_URI'] = uri
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

@@ -20,12 +20,12 @@ Bootstrap(app)
 
 ##CONNECT TO DB
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", "sqlite:///blog.db")
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", "sqlite:///blog.db")
 # uri = os.environ.get("DATABASE_URL", "sqlite:///blog.db")
-# uri = os.environ.get("DATABASE_URL")
-# if uri and uri.startswith("postgres://"):
-#     uri = uri.replace("postgres://", "postgresql+psycopg2://", 1)
-# app.config['SQLALCHEMY_DATABASE_URI'] = uri
+uri = os.environ.get("DATABASE_URL")
+if uri and uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql+psycopg2://", 1)
+app.config['SQLALCHEMY_DATABASE_URI'] = uri
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy()
@@ -90,8 +90,8 @@ class Comment(db.Model):
     blog_id = db.Column(db.Integer, ForeignKey('blog_posts.id'))
 
 
-# with app.app_context():
-#     db.create_all()
+with app.app_context():
+    db.create_all()
 
 
 @app.route('/')

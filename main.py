@@ -89,9 +89,9 @@ class Comment(db.Model):
     blog = relationship("BlogPost", back_populates="comments")
     blog_id = db.Column(db.Integer, ForeignKey('blog_posts.id'))
 
-
-with app.app_context():
-    db.create_all()
+#
+# with app.app_context():
+#     db.create_all()
 
 
 @app.route('/')
